@@ -9,13 +9,13 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
 	public static UIManager Instance;
-
 	public HomeScreenView homeScreenView;
 	public GameObject popupMessageParentGO;
 	public GameObject popupMessagePrefab;
 	public GameObject settingPrefab;
 	public GameObject infoPrefab;
 	public Transform targetTransform;
+	public bool isOnHomeScreen = false;
 	public float bottomBarTriggerHeight = 200f;
 
 	private void Awake ()
@@ -31,19 +31,22 @@ public class UIManager : MonoBehaviour
 
 	private void Update ()
 	{
-		Debug.Log ("Mouse Position: " + Input.mousePosition.y);
-		if (Input.mousePosition.y <= bottomBarTriggerHeight && homeScreenView != null)
+		//Debug.Log ("Mouse Position: " + Input.mousePosition.y);
+		if (Input.mousePosition.y < bottomBarTriggerHeight && isOnHomeScreen && homeScreenView != null)
 		{
+			Debug.Log ("----IF----");
 			homeScreenView.ShowBottomBar ();
 		}
-		else if (Input.mousePosition.y >= Screen.height - bottomBarTriggerHeight && homeScreenView != null)
+		else
 		{
+			Debug.Log ("----ELSE----");
 			homeScreenView.HideBottomBar ();
 		}
 	}
 
 	public void PopupOpen (GameObject popupInstance)
 	{
+		isOnHomeScreen = false;
 		Instantiate (popupInstance, targetTransform);
 	}
 
@@ -61,6 +64,7 @@ public class UIManager : MonoBehaviour
 
 	private IEnumerator DestroyCoroutine (GameObject popupInstance)
 	{
+		isOnHomeScreen = true;
 		yield return new WaitForSeconds (1f);
 		Destroy (popupInstance);
 	}

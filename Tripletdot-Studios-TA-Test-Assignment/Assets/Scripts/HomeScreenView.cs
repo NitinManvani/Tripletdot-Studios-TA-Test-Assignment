@@ -9,6 +9,8 @@ public class HomeScreenView : MonoBehaviour//, IPointerEnterHandler, IPointerExi
 	public TopBarView topBarView;
 	public BottomBarView bottomBarView;
 	private Animator animator;
+	[SerializeField] private string bottomBarShowTriggger = "BottomBarIn";
+	[SerializeField] private string bottomBarHideTrigger = "BottomBarOut";
 
 	private void Awake ()
 	{
@@ -17,12 +19,16 @@ public class HomeScreenView : MonoBehaviour//, IPointerEnterHandler, IPointerExi
 
 	public void ShowBottomBar ()
 	{
-		animator.SetTrigger ("BottomBarIn");
+		animator.ResetTrigger (bottomBarShowTriggger);
+		animator.ResetTrigger (bottomBarHideTrigger);
+		animator.SetTrigger (bottomBarShowTriggger);
 	}
 
 	public void HideBottomBar ()
 	{
-		animator.SetTrigger ("BottomBarOut");
+		animator.ResetTrigger (bottomBarHideTrigger);
+		animator.ResetTrigger (bottomBarShowTriggger);
+		animator.SetTrigger (bottomBarHideTrigger);
 	}
 
 	// Start is called before the first frame update
