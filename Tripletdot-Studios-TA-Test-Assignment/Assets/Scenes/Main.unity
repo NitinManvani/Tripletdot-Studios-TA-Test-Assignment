@@ -469,9 +469,8 @@ MonoBehaviour:
   settingPrefab: {fileID: 8915443986572513994, guid: 50e3619ececa6f549b2a9e6f25e10fbc, type: 3}
   infoPrefab: {fileID: 6442377928971946193, guid: b5fc8cd3308fddb4b9fe3644531c3ec5, type: 3}
   targetTransform: {fileID: 363838867}
+  isOnHomeScreen: 0
   bottomBarTriggerHeight: 200
-  timeOutOfBottom: 5
-  hideDelay: 0
 --- !u!224 &110552083
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1294,6 +1293,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topBarView: {fileID: 65382009}
   bottomBarView: {fileID: 728884648}
+  bottomBarShowTriggger: BottomBarIn
+  bottomBarHideTrigger: BottomBarOut
 --- !u!1 &728884646
 GameObject:
   m_ObjectHideFlags: 0
