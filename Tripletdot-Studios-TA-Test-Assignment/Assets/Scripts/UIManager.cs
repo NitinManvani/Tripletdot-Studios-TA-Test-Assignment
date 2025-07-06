@@ -1,27 +1,22 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
 	public static UIManager Instance;
-	//public BottomBarView bottomBarView;
+
+	public HomeScreenView homeScreenView;
 	public GameObject popupMessageParentGO;
 	public GameObject popupMessagePrefab;
 	public GameObject settingPrefab;
 	public GameObject infoPrefab;
 	public Transform targetTransform;
-
-	[Header ("Top Bar References")]
-	public int coinCount;
-	public int lifeCount;
-	public int starCount;
-	public TextMeshProUGUI coinCountText;
-	public TextMeshProUGUI lifeCountText;
-	public TextMeshProUGUI starCountText;
+	public float bottomBarTriggerHeight = 200f;
 
 	private void Awake ()
 	{
@@ -31,9 +26,20 @@ public class UIManager : MonoBehaviour
 
 	private void Start ()
 	{
-		coinCountText.text = coinCount.ToString ();
-		lifeCountText.text = lifeCount.ToString ();
-		starCountText.text = starCount.ToString ();
+		homeScreenView.SetCurrencyValue ();
+	}
+
+	private void Update ()
+	{
+		Debug.Log ("Mouse Position: " + Input.mousePosition.y);
+		if (Input.mousePosition.y <= bottomBarTriggerHeight && homeScreenView != null)
+		{
+			homeScreenView.ShowBottomBar ();
+		}
+		else if (Input.mousePosition.y >= Screen.height - bottomBarTriggerHeight && homeScreenView != null)
+		{
+			homeScreenView.HideBottomBar ();
+		}
 	}
 
 	public void PopupOpen (GameObject popupInstance)

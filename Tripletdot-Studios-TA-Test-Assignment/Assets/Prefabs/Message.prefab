@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a08578da9d55a6d4bbc8e7de856a9dda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  infoMessage: This Panel will be unlock after Level 6.
+  infoMessage: Ohh ! This is not Unlocked Yet.
   infoText: {fileID: 5915611193056700611}
 --- !u!111 &2222731343683157988
 Animation:
